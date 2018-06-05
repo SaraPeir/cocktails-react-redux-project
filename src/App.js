@@ -2,6 +2,8 @@ import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux'
 import { updateInfo } from './actions';
+import { changeSelectText } from './actions';
+import DrinkCard from './components/DrinkCard';
 
 class App extends Component {
   componentWillMount() {
@@ -11,7 +13,6 @@ class App extends Component {
 renderize(){
 setTimeout(this.renderUsersList.bind(this), 3000);  //In order to resolve the problem that arrayList3 was seen in its initial state (a void array, length = 0)
 }
-
 
   renderUsersList() {
 if(this.props.arrayList3 !== undefined){
@@ -31,10 +32,9 @@ if(this.props.arrayList3 !== undefined){
   render() {
     return (
       <div className="App">
-        Hola
-
   {this.renderize()}
-<select>{this.createOptions()}</select>
+<select value = {this.props.selectedOption} onChange = {this.props.changeSelectText}>{this.createOptions()}</select>
+<DrinkCard />
       </div>
     );
   }
@@ -51,9 +51,10 @@ function mapStateToProps(state) {
     arrayList: state.data.drinksData,
     //[nombrePropriedad] = [state].[nombreElementoIzqInrootReducer(reducers/index.js)].[nombreElementoQueCambia(initialState in firstArrayDrinks)]
     arrayList2: state.data.drinksData2,
-    arrayList3: state.data.drinksData3
+    arrayList3: state.data.drinksData3,
+    selectedOption: state.selVal.selectValue
 
   }
 }
 
-export default connect(mapStateToProps, { updateInfo })(App)
+export default connect(mapStateToProps, { updateInfo, changeSelectText })(App)
