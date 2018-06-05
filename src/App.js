@@ -9,7 +9,7 @@ class App extends Component {
   }
 
 renderize(){
-setTimeout(this.renderUsersList.bind(this), 3000);  //In order to resolve the problem that arrayList3 was seen in its initial state (length = 0)
+setTimeout(this.renderUsersList.bind(this), 3000);  //In order to resolve the problem that arrayList3 was seen in its initial state (a void array, length = 0)
 }
 
   showResponse(){
@@ -20,7 +20,7 @@ setTimeout(this.renderUsersList.bind(this), 3000);  //In order to resolve the pr
 
   renderUsersList() {
 if(this.props.arrayList3 !== undefined){
-  return console.log(this.props.arrayList3[0].map((y, index) => y.drinks).map((z, index) => z[0]));
+  return console.log(this.props.arrayList3[0].map((x, index) => x.drinks).map((y, index) => y[0]).map((z, index) => z.strDrink));
   } else {return console.log('this.props.arrayList3 no definido')}}
 
 
