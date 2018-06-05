@@ -12,16 +12,19 @@ renderize(){
 setTimeout(this.renderUsersList.bind(this), 3000);  //In order to resolve the problem that arrayList3 was seen in its initial state (a void array, length = 0)
 }
 
-  showResponse(){
-    if(this.props.arrayList !== undefined && this.props.arrayList.length > 0){
-      return <p>{this.props.arrayList[0].strDrink}</p>
-    }
-  }
 
   renderUsersList() {
 if(this.props.arrayList3 !== undefined){
   return console.log(this.props.arrayList3[0].map((x, index) => x.drinks).map((y, index) => y[0]).map((z, index) => z.strDrink));
   } else {return console.log('this.props.arrayList3 no definido')}}
+
+  createOptions(){
+    let array = this.props.arrayList;
+    if(array !== undefined && array.length > 0){
+        let options = array.map( (x, index) => <option key={index}> {x.strDrink}</option>);
+        return options;
+      }
+  }
 
 
 
@@ -29,8 +32,9 @@ if(this.props.arrayList3 !== undefined){
     return (
       <div className="App">
         Hola
-  {this.showResponse()}
+
   {this.renderize()}
+<select>{this.createOptions()}</select>
       </div>
     );
   }
