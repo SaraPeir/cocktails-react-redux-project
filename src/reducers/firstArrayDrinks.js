@@ -11,6 +11,7 @@ export function updateInfo(state = initialState, action) {
 
     switch (action.type) {
         case UPDATE_INFO:
+            
             return Object.assign({}, state, {drinksData: action.drinksArray, drinksData2: action.drinksArray2, drinksData3: action.drinksArray3 }) //action.[desde dispatch( { type: UPDATE_INFO, drinksArray: response.data.drinks } in action]
 
         default:

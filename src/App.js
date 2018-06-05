@@ -8,6 +8,10 @@ class App extends Component {
     this.props.updateInfo()
   }
 
+renderize(){
+setTimeout(this.renderUsersList.bind(this), 3000);  //In order to resolve the problem that arrayList3 was seen in its initial state (length = 0)
+}
+
   showResponse(){
     if(this.props.arrayList !== undefined && this.props.arrayList.length > 0){
       return <p>{this.props.arrayList[0].strDrink}</p>
@@ -15,11 +19,9 @@ class App extends Component {
   }
 
   renderUsersList() {
-if(this.props.arrayList3 !== undefined && this.props.arrayList3.length > 0){
-    //return console.log('result', this.props.arrayList3.map((y, index) => <p key={index}> {y.drinks[0].strDrink} </p>))
-return this.props.arrayList3.map((y, index) => <p key={index}> {y[0].strDrink} </p>)
-
-  } else {return 'this.props.arrayList3 no definido'}}
+if(this.props.arrayList3 !== undefined){
+  return console.log(this.props.arrayList3[0].map((y, index) => y.drinks).map((z, index) => z[0]));
+  } else {return console.log('this.props.arrayList3 no definido')}}
 
 
 
@@ -27,7 +29,8 @@ return this.props.arrayList3.map((y, index) => <p key={index}> {y[0].strDrink} <
     return (
       <div className="App">
         Hola
-
+  {this.showResponse()}
+  {this.renderize()}
       </div>
     );
   }
@@ -37,7 +40,8 @@ return this.props.arrayList3.map((y, index) => <p key={index}> {y[0].strDrink} <
 function mapStateToProps(state) {
     // console.log('drinksData: ', state.data.drinksData );
     // console.log('drinksData2: ', state.data.drinksData2 );
-    // console.log('drinksData3: ', state.data.drinksData3 );
+    // console.log('drinksData3 map: ', state.data.drinksData3.map((y, index) => {y.drinks}));
+//console.log('drinksData3 map: ', state.data.drinksData3.map((y, index) => {y.drinks[0].idDrink}));
 
   return {
     arrayList: state.data.drinksData,

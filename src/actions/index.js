@@ -12,10 +12,18 @@ export function updateInfo() {
                 for (let i = 0; i < array2.length; i++) {
                     array.push(axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${array2[i]}`))
                 }
-            const array3 = []
-            axios.all(array).then(response => array3.push(response.map( (d, index) => d.data)));
+            const array3 = [];
+          axios.all(array).then(response => array3.push(response.map( (d, index) => d.data)));
 
-          dispatch( { type: UPDATE_INFO, drinksArray: array1, drinksArray2: array2, drinksArray3: array3 })
+
+//             function delay(){
+//             setTimeout(function(){return console.log(array3[0][0].drinks[0].idDrink)}, 3000);
+// }
+//
+//
+// delay();
+
+          dispatch( { type: UPDATE_INFO, drinksArray: array1, drinksArray2: array2, drinksArray3: array3})
       })
     }
   }
