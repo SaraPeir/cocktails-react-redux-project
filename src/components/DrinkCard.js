@@ -16,6 +16,7 @@ class DrinkCard extends Component {
       <h2>{this.props.selectedDrinkType}</h2>
       <img src={this.props.selectedDrinkSrc} alt={this.props.selectedDrinkName} width='200px'/>
       <h2>{this.props.selectedDrinkGlass}</h2>
+    <h2>{this.props.selectedDrinkIngredients}</h2>
       </div>
     );
   }
@@ -55,12 +56,35 @@ function accessToDrinkGlass(){
   }
 }
 
+function createIngredientsArray(){
+  let ingredients = [];
+  if(object2 !== undefined){
+    ingredients = [object2.strIngredient1, object2.strIngredient2, object2.strIngredient3, object2.strIngredient4, object2.strIngredient5, object2.strIngredient6, object2.strIngredient7, object2.strIngredient8, object2.strIngredient9, object2.strIngredient10, object2.strIngredient11, object2.strIngredient12, object2.strIngredient13, object2.strIngredient14, object2.strIngredient15].filter((i, index) => i !== '' && i !== ' ')
+
+  console.log('ingredients', ingredients);
+    return ingredients.join(' * ');
+  }
+}
+createIngredientsArray();
+
+function createMeasuresArray(){
+  let measures = [];
+  if(object2 !== undefined){
+    measures = [object2.strMeasure1, object2.strMeasure2, object2.strMeasure3, object2.strMeasure4, object2.strMeasure5, object2.strMeasure6, object2.strMeasure7, object2.strMeasure8, object2.strMeasure9, object2.strMeasure10, object2.strMeasure11, object2.strMeasure12, object2.strMeasure13, object2.strMeasure14, object2.strMeasure15].filter((i, index) => i !== '' && i !== ' ')
+
+  console.log('measures', measures);
+    return measures.join(', ');
+  }
+}
+createMeasuresArray();
+
 
   return {
   selectedDrinkName: accessToDrinkName(),
   selectedDrinkType: accessToDrinkType(),
   selectedDrinkSrc: accessToDrinkSrc(),
-  selectedDrinkGlass: accessToDrinkGlass()
+  selectedDrinkGlass: accessToDrinkGlass(),
+  selectedDrinkIngredients: createIngredientsArray()
   }
 }
 
