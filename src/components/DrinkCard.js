@@ -11,8 +11,6 @@ class DrinkCard extends Component {
     return (
       <div>
         <h2>{this.props.selectedDrink}</h2>
-
-
       </div>
     );
   }
@@ -21,12 +19,8 @@ class DrinkCard extends Component {
 function mapStateToProps(state) {
 
   return {
-
     selectedDrink: state.selVal.selectValue
-
-
   }
 }
 
 export default connect(mapStateToProps, { changeSelectText })(DrinkCard)
-//export default Paragraph;

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { updateInfo } from './firstArrayDrinks';  //A. updateInfo: Desde firstArrayDrinks.js
-import { changeSelectValue } from './select';
+import { updateInfo } from './fetchsRed';  //A. updateInfo: Desde firstArrayDrinks.js
+import { changeSelectValue } from './selectRed';
 
 const rootReducer = combineReducers({
   data: updateInfo,  //A.
