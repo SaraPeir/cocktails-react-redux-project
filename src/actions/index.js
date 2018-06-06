@@ -37,21 +37,20 @@ export function updateInfo() {
 const selectValue = event.target.value;
 
           function filterArray(){
-            const array = store.getState().data.drinksData3;
+            return store.getState().data.drinksData3;
+            };
+           store.subscribe(filterArray);
+const newArray = filterArray();
 
-          //  const filteredArray = array.filter( (d, index) => d.idDrink);
-          return console.log('filterArray return', array[0].map((x, index) => x.drinks).map((y, index) => y[0]).filter((z, index) => z.strDrink == selectValue))
-
-
-};
-           store.subscribe(filterArray)
+const drinkArray = newArray[0].map((x, index) => x.drinks).map((y, index) => y[0]).filter((z, index) => z.strDrink == selectValue);
+console.log('drinkArray: ', drinkArray)
 
 
       //   array()
       // array2()
 //filterArray();
 
-                  dispatch( { type: CHANGE_SELECT_TEXT, text: selectValue} )
+                  dispatch( { type: CHANGE_SELECT_TEXT, text: selectValue, infoArray: drinkArray} )
 
       }
   }
