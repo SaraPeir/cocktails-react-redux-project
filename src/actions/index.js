@@ -29,13 +29,29 @@ export function updateInfo() {
   export function changeSelectText(event) {
       return (dispatch, getState) => {
 
-                  dispatch( { type: CHANGE_SELECT_TEXT, text: event.target.value} )
-                  function array(){console.log('hola', store.getState().selVal)};
-                   store.subscribe(array)
+        // function array(){console.log('hola', store.getState().selVal)};
+        //  store.subscribe(array)
+        //
+        //  function array2(){console.log('array', store.getState().data)};
+        //   store.subscribe(array2);
+const selectValue = event.target.value;
 
-                   function array2(){console.log('array', store.getState().data)};
-                    store.subscribe(array2)
-                  array()
-                array2()
+          function filterArray(){
+            const array = store.getState().data.drinksData3;
+
+          //  const filteredArray = array.filter( (d, index) => d.idDrink);
+          return console.log('filterArray return', array[0].map((x, index) => x.drinks).map((y, index) => y[0]).filter((z, index) => z.strDrink == selectValue))
+
+
+};
+           store.subscribe(filterArray)
+
+
+      //   array()
+      // array2()
+//filterArray();
+
+                  dispatch( { type: CHANGE_SELECT_TEXT, text: selectValue} )
+
       }
   }
