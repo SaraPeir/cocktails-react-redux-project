@@ -3,9 +3,11 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import { showUsers } from '../actions';
 import { changeSelectText } from '../actions';
+import store from '../index.js';
 
 
 class DrinkCard extends Component {
+
 
   render() {
     return (

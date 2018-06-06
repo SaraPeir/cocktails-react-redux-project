@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import store from '../index.js';
 
 export const UPDATE_INFO = 'UPDATE_INFO';
 export const CHANGE_SELECT_TEXT = 'CHANGE_SELECT_TEXT';
@@ -17,6 +18,8 @@ export function updateInfo() {
           axios.all(array).then(response => array3.push(response.map( (d, index) => d.data)));
 
 
+
+
           dispatch( { type: UPDATE_INFO, drinksArray: array1, drinksArray2: array2, drinksArray3: array3})
       })
     }
@@ -25,6 +28,14 @@ export function updateInfo() {
 
   export function changeSelectText(event) {
       return (dispatch, getState) => {
+
                   dispatch( { type: CHANGE_SELECT_TEXT, text: event.target.value} )
+                  function array(){console.log('hola', store.getState().selVal)};
+                   store.subscribe(array)
+
+                   function array2(){console.log('array', store.getState().data)};
+                    store.subscribe(array2)
+                  array()
+                array2()
       }
   }
