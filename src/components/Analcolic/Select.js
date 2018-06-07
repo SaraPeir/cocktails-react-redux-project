@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux'
-import { changeSelectText } from '../actions';
+import { changeSelectText } from '../../actions';
 
 
 class Select extends Component {
