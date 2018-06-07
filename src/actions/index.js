@@ -2,9 +2,11 @@ import axios from 'axios';
 import store from '../index.js';
 
 export const UPDATE_INFO = 'UPDATE_INFO';
+export const UPDATE_INFO_GIN = 'UPDATE_INFO_GIN';
 export const CHANGE_SELECT_TEXT = 'CHANGE_SELECT_TEXT';
+export const CHANGE_GIN_SELECT_TEXT = 'CHANGE_GIN_SELECT_TEXT';
 
-export function updateInfo() {
+export function updateInfoNoAlc() {
     return (dispatch, getState) => {
         axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
             .then((response) => {
@@ -16,15 +18,27 @@ export function updateInfo() {
                 }
             const array3 = [];
           axios.all(array).then(response => array3.push(response.map( (d, index) => d.data)));
-
-
-
-
-          dispatch( { type: UPDATE_INFO, drinksArray: array1, drinksArray2: array2, drinksArray3: array3})
+          dispatch( { type: UPDATE_INFO, drinksArrayNoAlc: array1, drinksArrayNoAlc2: array2, drinksArrayNoAlc3: array3})
       })
     }
   }
 
+  export function updateInfoGin() {
+      return (dispatch, getState) => {
+          axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin')
+              .then((response) => {
+                  const array1 = response.data.drinks;
+                  const array2 = array1.map( (d, index) => d.idDrink);
+                  let array = [];
+                  for (let i = 0; i < array2.length; i++) {
+                      array.push(axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${array2[i]}`))
+                  }
+              const array3 = [];
+            axios.all(array).then(response => array3.push(response.map( (d, index) => d.data)));
+            dispatch( { type: UPDATE_INFO_GIN, drinksArrayGin: array1, drinksArrayGin2: array2, drinksArrayGin3: array3})
+        })
+      }
+    }
 
   export function changeSelectText(event) {
       return (dispatch, getState) => {
@@ -37,7 +51,7 @@ export function updateInfo() {
 const selectValue = event.target.value;
 
           function filterArray(){
-            return store.getState().data.drinksData3;
+            return store.getState().dataNoAlc.drinksDataNoAlc3;
             };
            store.subscribe(filterArray);
 const newArray = filterArray();
@@ -51,6 +65,28 @@ console.log('drinkArray: ', drinkArray)
 //filterArray();
 
                   dispatch( { type: CHANGE_SELECT_TEXT, text: selectValue, infoArray: drinkArray} )
+
+      }
+  }
+
+
+  export function changeGinSelectText(event) {
+      return (dispatch, getState) => {
+
+const selectValue = event.target.value;
+
+          function filterArray(){
+            return store.getState().dataGin.drinksDataGin3;
+            };
+           store.subscribe(filterArray);
+const newArray = filterArray();
+
+// const drinkArray = newArray[0].map((x, index) => x.drinks).map((y, index) => y[0]).filter((z, index) => z.strDrink == selectValue);
+const drinkArray = newArray[0].map((x, index) => x.drinks).map((y, index) => y[0]).filter((z, index) => z.strDrink == selectValue);
+console.log('drinkArrayGin: ', drinkArray)
+
+
+                  dispatch( { type: CHANGE_GIN_SELECT_TEXT, textGin: selectValue, infoArrayGin: drinkArray} )
 
       }
   }

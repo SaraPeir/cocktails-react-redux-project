@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux'
-import { changeSelectText } from '../../actions';
+import { changeGinSelectText } from '../../../actions';
 
 
 class Select extends Component {
@@ -17,7 +17,7 @@ class Select extends Component {
   render() {
     return (
       <div>
-        <select value = {this.props.selectedOption} onChange = {this.props.changeSelectText}><option>Analcolic drinks</option>{this.createOptions()}</select>
+        <select value = {this.props.selectedOption} onChange = {this.props.changeGinSelectText}><option>Gin drinks</option>{this.createOptions()}</select>
       </div>
     );
   }
@@ -25,10 +25,10 @@ class Select extends Component {
 
 function mapStateToProps(state) {
   return {
-    arrayList: state.dataNoAlc.drinksDataNoAlc,
-    selectedOption: state.selVal.selectValue
+    arrayList: state.dataGin.drinksDataGin,
+    selectedOption: state.selValGin.selectGinValue
   }
 
 }
 
-export default connect(mapStateToProps, { changeSelectText })(Select)
+export default connect(mapStateToProps, { changeGinSelectText })(Select)

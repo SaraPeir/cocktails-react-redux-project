@@ -1,6 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import Select from './GinDrinks/Select';
+import DrinkCard from './GinDrinks/DrinkCard';
 
 
 class Alcoholic extends Component {
@@ -9,6 +11,8 @@ class Alcoholic extends Component {
     return (
       <div>
       <h1>Alcoholic</h1>
+      <Select />
+<DrinkCard />
       </div>
     );
   }

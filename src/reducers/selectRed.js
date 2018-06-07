@@ -6,7 +6,7 @@ const initialState = {
     drinkInfoArray: []
 }
 
-export function changeSelectValue(state = initialState, action) {
+export function changeSelectText(state = initialState, action) {
 
     switch (action.type) {
         case CHANGE_SELECT_TEXT:
