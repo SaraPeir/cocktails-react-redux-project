@@ -17,7 +17,7 @@ class Select extends Component {
   render() {
     return (
       <div>
-        <select value = {this.props.selectedOption} onChange = {this.props.changeSelectText}>{this.createOptions()}</select>
+        <select value = {this.props.selectedOption} onChange = {this.props.changeSelectText}><option>Analcolic drinks</option>{this.createOptions()}</select>
       </div>
     );
   }
