@@ -1,11 +1,11 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux'
-import { changeGinSelectText } from '../../../actions';
+import { changeVodkaSelectText } from '../../../actions';
 import store from '../../../index.js';
 
 
-class DrinkCardGin extends Component {
+class DrinkCardVodka extends Component {
 
 
   render() {
@@ -23,10 +23,10 @@ class DrinkCardGin extends Component {
 
 function mapStateToProps(state) {
 // let object = state.selValGin.drinkInfoGinArray;
-let object = state.selValGin.drinkInfoGinArray;
+let object = state.selValVodka.drinkInfoVodkaArray;
 
-console.log('selectValue', state.selValGin.selectGinValue)
-console.log('drinkInfoGinArray', state.selValGin.drinkInfoGinArray)
+console.log('selectValue', state.selValVodka.selectVodkaValue)
+console.log('drinkInfoVodkaArray', state.selValVodka.drinkInfoVodkaArray)
 
 
 
@@ -35,7 +35,7 @@ console.log('drinkInfoGinArray', state.selValGin.drinkInfoGinArray)
 const object2 = object[0];
 
 if(object !== undefined){
-console.log('ginObject', object)
+console.log('vodkaObject', object)
 }
 
 
@@ -122,4 +122,4 @@ return coupledArray.join(', ')
   }
 }
 
-export default connect(mapStateToProps, { changeGinSelectText })(DrinkCardGin)
+export default connect(mapStateToProps, { changeVodkaSelectText })(DrinkCardVodka)

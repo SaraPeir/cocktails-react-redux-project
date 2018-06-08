@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import { updateInfoNoAlc } from './actions';
 import { updateInfoGin } from './actions';
+import { updateInfoVodka } from './actions';
 import { changeSelectText } from './actions';
 import DrinkCard from './components/Analcolic/DrinkCard';
 import Select from './components/Analcolic/Select';
@@ -15,7 +16,8 @@ import { withRouter } from 'react-router-dom'
 class App extends Component {
   componentWillMount() {
     this.props.updateInfoNoAlc(),
-    this.props.updateInfoGin()
+    this.props.updateInfoGin(),
+    this.props.updateInfoVodka()
   }
 
   // componentWillMount() {
@@ -31,6 +33,10 @@ renderizeGin(){
   setTimeout(this.renderUsersListGin.bind(this), 4000);  //In order to resolve the problem that arrayList3 was seen in its initial state (a void array, length = 0)
 }
 
+renderizeVodka(){
+  setTimeout(this.renderUsersListVodka.bind(this), 4000);  //In order to resolve the problem that arrayList3 was seen in its initial state (a void array, length = 0)
+}
+
   renderUsersList() {
     if(this.props.arrayListNoAlc3 !== undefined){
       return console.log(this.props.arrayListNoAlc3[0].map((x, index) => x.drinks).map((y, index) => y[0]).map((z, index) => z.strDrink));
@@ -41,13 +47,17 @@ renderizeGin(){
         return console.log('this.props.arrayListGin3', this.props.arrayListGin3[0].map((x, index) => x.drinks).map((y, index) => y[0]).map((z, index) => z.strDrink));
       } else {return console.log('this.props.arrayListGin3 no definido')}}
 
-
+      renderUsersListVodka() {
+        if(this.props.arrayListVodka3 !== undefined){
+          return console.log('this.props.arrayListVodka3', this.props.arrayListVodka3[0].map((x, index) => x.drinks).map((y, index) => y[0]).map((z, index) => z.strDrink));
+        } else {return console.log('this.props.arrayListVodka3 no definido')}}
 
   render() {
     return (
       <div className="App">
   {this.renderize()}
 {this.renderizeGin()}
+{this.renderizeVodka()}
     <Menu />
       <Switch>
       <Route exact path='/' component={ Alcoholic } />
@@ -68,11 +78,12 @@ function mapStateToProps(state) {
     //[nombrePropriedad] = [state].[nombreElementoIzqInrootReducer(reducers/index.js)].[nombreElementoQueCambia(initialState in firstArrayDrinks)]
     arrayListNoAlc2: state.dataNoAlc.drinksDataNoAlc2,
     arrayListNoAlc3: state.dataNoAlc.drinksDataNoAlc3,
-    arrayListGin3: state.dataGin.drinksDataGin3
+    arrayListGin3: state.dataGin.drinksDataGin3,
+    arrayListVodka3: state.dataGin.drinksDataVodka3
   }
 }
 
 
 // así podemos implementar React Redux con Router
 
-export default withRouter(connect(mapStateToProps, { updateInfoNoAlc, updateInfoGin})(App));
+export default withRouter(connect(mapStateToProps, { updateInfoNoAlc, updateInfoGin, updateInfoVodka})(App));
